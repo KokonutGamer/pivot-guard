@@ -1,0 +1,10 @@
+{
+    "name": "Pivot Guard",
+    "description": "Base Level Extension",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "home.html",
+        "default_icon": "shield-virus-solid.png"
+    }
+}
