@@ -4,7 +4,7 @@
     "version": "1.0",
     "manifest_version": 3,
     "action": {
-        "default_popup": "home.html",
-        "default_icon": "shield-virus-solid.png"
+        "default_popup": "public/home.html",
+        "default_icon": "public/shield-virus-solid.png"
     }
 }
