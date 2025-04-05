@@ -12,5 +12,7 @@ const client = {
         }
     }
 
-    
+    // TODO async method for blocked sites
+
+    // TODO async method for alternative sites
 };
