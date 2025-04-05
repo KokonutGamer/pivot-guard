@@ -12,6 +12,8 @@
         "type": "module"
     },
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "tabs",
+        "webNavigation"
     ]
 }
