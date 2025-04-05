@@ -29,4 +29,19 @@ export async function checkUrl(url) {
     }
 }
 
-// TODO async method for alternative sites
+// async method for alternative sites
+export async function alternativeSites(url) {
+    const match = url.match(/^https?:\/\/([^\/]+)/);
+    const domain = match[1];
+    try {
+        const response = await fetch(`http://localhost:8080/api/v1/sites/getSafeSites?url=${domain}`);
+
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const data = await response.json();
+        return data; // expects { blocked: true/false, ... }
+    } catch (err) {
+        console.error('API call failed:', err);
+        return { safeSites: [] };
+    }
+}
