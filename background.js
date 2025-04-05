@@ -18,7 +18,7 @@ chrome.webNavigation.onCompleted.addListener(function (details) {
     // Check if the current URL is in the blocked list
     for (let url of blockedUrls) {
         if (currentUrl.includes(url)) {
-            chrome.tabs.update(details.tabId, { url: chrome.runtime.getURL("redirect/index.html") });
+            chrome.tabs.update(details.tabId, { url: chrome.runtime.getURL("templates/redirect.html") });
             break;
         }
     }
