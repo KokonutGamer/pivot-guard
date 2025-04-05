@@ -1,12 +1,14 @@
-import { checkUrl } from './client.js';
+import { checkUrl, alternativeSites } from './client.js';
 
 chrome.webNavigation.onCompleted.addListener(async (details) => {
     const url = details.url;
-    const result = await checkUrl(url); // this function is defined in api.js
+    const result = await checkUrl(url);
 
     if (result.compromisedSite) {
         console.log(`Blocked URL: ${url}`);
-        // You can notify the user or take further action here
+        const alt = await alternativeSites(url);
+        console.log(alt);
+        chrome.tabs.update(details.tabId, { url: chrome.runtime.getURL("templates/redirect.html") });
     } else {
         console.log(`URL is safe: ${url}`);
     }

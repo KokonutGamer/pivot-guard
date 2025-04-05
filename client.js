@@ -22,7 +22,7 @@ export async function checkUrl(url) {
         if (!response.ok) throw new Error('Network response was not ok');
 
         const data = await response.json();
-        return data; // expects { blocked: true/false, ... }
+        return data;
     } catch (err) {
         console.error('API call failed:', err);
         return { compromisedSite: false };
@@ -39,7 +39,7 @@ export async function alternativeSites(url) {
         if (!response.ok) throw new Error('Network response was not ok');
 
         const data = await response.json();
-        return data; // expects { blocked: true/false, ... }
+        return data;
     } catch (err) {
         console.error('API call failed:', err);
         return { safeSites: [] };
