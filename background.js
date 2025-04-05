@@ -8,6 +8,7 @@ chrome.webNavigation.onCompleted.addListener(async (details) => {
         console.log(`Blocked URL: ${url}`);
         alternativeSites(url).then(alternatives => {
             console.log(alternatives);
+            chrome.storage.local.set({'blockedUrl': url});
             chrome.storage.local.set({ alternatives });
             chrome.tabs.update(details.tabId, { url: chrome.runtime.getURL("templates/redirect.html") });
         })

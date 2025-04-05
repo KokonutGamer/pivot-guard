@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Set the page heading
+    chrome.storage.local.get("blockedUrl", (result) => {
+        console.log(result);
+        document.getElementById("site-heading").textContent = result.blockedUrl;
+    });
+
     chrome.storage.local.get("alternatives", (result) => {
         const items = result.alternatives.safeSites || [];
 
