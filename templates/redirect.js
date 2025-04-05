@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get("blockedUrl", (result) => {
         console.log(result);
         document.getElementById("site-heading").textContent = result.blockedUrl;
+        const button = document.querySelector("cool-button");
+        button.onclick = function () {
+            window.open(result);
+        };
     });
 
     chrome.storage.local.get("alternatives", (result) => {
