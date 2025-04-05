@@ -6,6 +6,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 
 chrome.webNavigation.onCompleted.addListener(function (details) {
+    
     // List of URLs or domains to block
     // TODO switch this with an API call
     const blockedUrls = [
