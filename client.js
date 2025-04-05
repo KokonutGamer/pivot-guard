@@ -45,3 +45,20 @@ export async function alternativeSites(url) {
         return { safeSites: [] };
     }
 }
+
+// async method for threats
+export async function threats(url) {
+    const match = url.match(/^https?:\/\/([^\/]+)/);
+    const domain = match[1];
+    try {
+        const response = await fetch(`http://localhost:8080/api/v1/sites/getThreatTypes?url=${domain}`);
+
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.error('API call failed:', err);
+        return { threatTypes: [] };
+    }
+}

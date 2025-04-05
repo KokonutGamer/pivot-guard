@@ -4,9 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(result);
         document.getElementById("site-heading").textContent = result.blockedUrl;
         const button = document.querySelector("cool-button");
-        button.onclick = function () {
-            window.open(result);
-        };
+        // button.onclick = function () {
+        //     window.open(result.blockedUrl);
+        // };
+    });
+
+    // Set the threat list
+    chrome.storage.local.get("threats", (result) => {
+        const threats = result.threats.threatTypes;
+        console.log("inside get: ", result);
+
+        const list = document.getElementById("threat-list");
+        for (let i = 0; i < threats.length; i++) {
+            const listItem = document.createElement("li");
+            listItem.className = 'text-start';
+            listItem.textContent = threats[i];
+            list.appendChild(listItem);
+        }
     });
 
     chrome.storage.local.get("alternatives", (result) => {

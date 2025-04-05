@@ -1,4 +1,4 @@
-import { checkUrl, alternativeSites } from './client.js';
+import { checkUrl, alternativeSites, threats } from './client.js';
 
 chrome.webNavigation.onCompleted.addListener(async (details) => {
     const url = details.url;
@@ -6,12 +6,16 @@ chrome.webNavigation.onCompleted.addListener(async (details) => {
 
     if (result.compromisedSite) {
         console.log(`Blocked URL: ${url}`);
+        threats(url).then(threats => {
+            console.log(threats);
+            chrome.storage.local.set({ threats });
+        });
+
         alternativeSites(url).then(alternatives => {
-            console.log(alternatives);
-            chrome.storage.local.set({'blockedUrl': url});
+            chrome.storage.local.set({ 'blockedUrl': url });
             chrome.storage.local.set({ alternatives });
             chrome.tabs.update(details.tabId, { url: chrome.runtime.getURL("templates/redirect.html") });
-        })
+        });
     } else {
         console.log(`URL is safe: ${url}`);
     }
