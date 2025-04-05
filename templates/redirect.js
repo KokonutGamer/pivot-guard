@@ -1,5 +1,16 @@
 document.getElementById('cool-button').addEventListener('click', () => {
     chrome.storage.local.get("blockedUrl", (result) => {
+        const match = result.blockedUrl.match(/^https?:\/\/([^\/]+)/);
+        const domain = match[1];
+        chrome.storage.local.get(["whitelist"], (result) => {
+            let whitelist = result.whitelist || [];
+            if (!whitelist.includes(result.blockedUrl)) {
+                whitelist.push(domain);
+                chrome.storage.local.set({ whitelist }, () => {
+                    console.log("Whitelist updated with new URL!");
+                });
+            }
+        });
         chrome.runtime.sendMessage({ action: 'continueToUrl', url: result.blockedUrl });
     });
 });
