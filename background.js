@@ -20,3 +20,12 @@ chrome.webNavigation.onCompleted.addListener(async (details) => {
         console.log(`URL is safe: ${url}`);
     }
 }, { url: [{ schemes: ["http", "https"] }] });
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === 'continueToUrl') {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            const tabId = tabs[0].id;
+            chrome.tabs.update(tabId, { url: message.url });
+        });
+    }
+});

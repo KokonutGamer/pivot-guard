@@ -1,12 +1,14 @@
+document.getElementById('cool-button').addEventListener('click', () => {
+    chrome.storage.local.get("blockedUrl", (result) => {
+        chrome.runtime.sendMessage({ action: 'continueToUrl', url: result.blockedUrl });
+    });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     // Set the page heading
     chrome.storage.local.get("blockedUrl", (result) => {
         console.log(result);
         document.getElementById("site-heading").textContent = result.blockedUrl;
-        const button = document.querySelector("cool-button");
-        // button.onclick = function () {
-        //     window.open(result.blockedUrl);
-        // };
     });
 
     // Set the threat list
