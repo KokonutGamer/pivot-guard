@@ -1,14 +1,17 @@
 {
     "manifest_version": 3,
     "name": "Pivot Guard",
-    "description": "Base Level Extension",
-    "version": "1.0",
+    "description": "Privacy Breach Notification Extension",
+    "version": "1.0.0",
     "action": {
-        "default_popup": "public/home.html",
-        "default_icon": "public/shield-virus-solid.png"
+        "default_popup": "status.html",
+        "default_icon": "icons/shield-virus-solid.png"
     },
     "background": {
-        "service_worker": "src/background.js"
+        "service_worker": "background.js",
+        "type": "module"
     },
-    "permissions": ["activeTab"]
+    "permissions": [
+        "activeTab"
+    ]
 }
