@@ -13,8 +13,11 @@ export async function fetchRandomJoke() {
 
 // async method for blocked sites
 export async function checkUrl(url) {
+    const match = url.match(/^https?:\/\/([^\/]+)/);
+    const domain = match[1];
+    console.log("domain = ", match[1]);
     try {
-        const response = await fetch(`http://localhost:8080/api/v1/sites/isSafeSite?url=${url}`);
+        const response = await fetch(`http://localhost:8080/api/v1/sites/isSafeSite?url=${domain}`);
 
         if (!response.ok) throw new Error('Network response was not ok');
 
