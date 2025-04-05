@@ -1,30 +1,13 @@
+import { checkUrl } from './client.js';
 
-chrome.webNavigation.onCompleted.addListener(function (details) {
-    console.log("Web navigation completed");
+chrome.webNavigation.onCompleted.addListener(async (details) => {
+    const url = details.url;
+    const result = await checkUrl(url); // this function is defined in api.js
 
-    chrome.storage.sync.get("enabled", (data) => {
-        console.log("data.enabled = ", data.enabled);
-        if (!data.enabled) {
-            console.log("Returning early");
-            return;
-        }
-    });
-
-    // TODO switch this with an API call
-    // List of URLs or domains to block
-    const blockedUrls = [
-        "google.com",
-        "tracking-website.com",
-        "another-tracked-site.com"
-    ];
-
-    const currentUrl = details.url;
-
-    // Check if the current URL is in the blocked list
-    for (let url of blockedUrls) {
-        if (currentUrl.includes(url)) {
-            chrome.tabs.update(details.tabId, { url: chrome.runtime.getURL("templates/redirect.html") });
-            break;
-        }
+    if (result.compromisedSite) {
+        console.log(`Blocked URL: ${url}`);
+        // You can notify the user or take further action here
+    } else {
+        console.log(`URL is safe: ${url}`);
     }
-}, { url: [{ schemes: ['http', 'https'] }] });
+}, { url: [{ schemes: ["http", "https"] }] });
