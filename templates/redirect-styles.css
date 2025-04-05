@@ -1,14 +1,19 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #fefefe;
+    background-image: url("HOME.png");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
     color: #333;
     margin: 0;
-    padding: 2rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    overflow: hidden;
 }
 
 .container {
