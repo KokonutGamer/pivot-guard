@@ -1,11 +1,4 @@
-// const items = [
-//     { name: "Startpage.com", url: "https://www.startpage.com/", description: "Search and browse the internet without being tracked or targeted. Startpage is the world's most private search engine. Use Startpage to protect your personal data." },
-//     { name: "Privacia", url: "https://privacia.org/", description: "Privacia search engine features are free and simple ways to take control of your online privacy. We will never save or sell your search" },
-//     { name: "DuckDuckGo Search", url: "https://www.duckduckgo.com/", description: "The Internet privacy company that empowers you to seamlessly take control of your personal information online, without any tradeoffs." },
-//     { name: "Brave Search", url: "https://search.brave.com/", description: "Search the Web. Privately. Truly useful results, AI-powered answers, & more. All from an independent index. No profiling, no bias, no Big Tech." }
-// ];
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get("alternatives", (result) => {
         const items = result.alternatives.safeSites || [];
 
@@ -37,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 row.appendChild(col);
             });
 
-            console.log(row);
             carouselItem.appendChild(row);
             carouselInner.appendChild(carouselItem);
+            console.log(carouselItem);
         }
         console.log("Finished loading carousel");
         chrome.storage.local.remove("alternatives");
