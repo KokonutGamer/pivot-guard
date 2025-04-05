@@ -24,7 +24,7 @@ for (let i = 0; i < items.length; i += cardsPerSlide) {
         col.className = `col-md-4 d-flex justify-content-center`;
 
         col.innerHTML = `
-            <div class="card" style="width: 35em;">
+            <div class="card">
             <div class="card-body">
                 <a href="${item.url}" class="card-title">${item.title}</a>
                 <p class="card-text">${item.description}</p>
@@ -34,6 +34,7 @@ for (let i = 0; i < items.length; i += cardsPerSlide) {
         row.appendChild(col);
     });
 
+    console.log(row);
     carouselItem.appendChild(row);
     carouselInner.appendChild(carouselItem);
 }

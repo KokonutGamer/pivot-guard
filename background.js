@@ -1,14 +1,17 @@
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    console.log("Extension working in the background");
-    if (changeInfo.url) {
-        console.log("New URL: ", changeInfo.url);
-    }
-});
 
 chrome.webNavigation.onCompleted.addListener(function (details) {
-    
-    // List of URLs or domains to block
+    console.log("Web navigation completed");
+
+    chrome.storage.sync.get("enabled", (data) => {
+        console.log("data.enabled = ", data.enabled);
+        if (!data.enabled) {
+            console.log("Returning early");
+            return;
+        }
+    });
+
     // TODO switch this with an API call
+    // List of URLs or domains to block
     const blockedUrls = [
         "google.com",
         "tracking-website.com",

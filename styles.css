@@ -22,8 +22,3 @@ button {
 button:hover {
     background-color: #ff8c00;
 }
-
-#joke {
-    margin-top: 15px;
-    font-style: italic;
-}

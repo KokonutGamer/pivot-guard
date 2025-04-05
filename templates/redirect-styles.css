@@ -30,20 +30,26 @@ p {
     margin-bottom: 1.5rem;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    margin: 0.5rem 0;
-}
-
-a {
+.card-body a {
     color: #0275d8;
     text-decoration: none;
 }
 
-a:hover {
+.card-body a:hover {
     text-decoration: underline;
+}
+
+.cards-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: #e1e1e1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
 }
