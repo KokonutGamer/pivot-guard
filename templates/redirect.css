@@ -26,6 +26,19 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.logo {
+    position: absolute;
+    top: 5%; 
+    left: 5%;
+    margin: 0;
+}
+
+#name-logo {
+    width: 150px; 
+    max-width: 100%; 
+    height: auto;
+}
+
 h1 {
     color: #3e8dce;
 }
